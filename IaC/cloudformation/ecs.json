@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "ClusterName",
+    "ParameterValue": "java-script-cluster-cf"
+  },
+  {
+    "ParameterKey": "TaskDefName",
+    "ParameterValue": "java-script-cluster-fargate-taskdef-cf"
+  },
+  {
+    "ParameterKey": "AwsApplicationResourceGroup",
+    "ParameterValue": "yours"
+  },
+  {
+    "ParameterKey": "ContainerImageURI",
+    "ParameterValue": "build it"
+  }
+]

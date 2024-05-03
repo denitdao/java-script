@@ -1,0 +1,14 @@
+[
+  {
+    "ParameterKey": "RepositoryName",
+    "ParameterValue": "java-script-repository-cf"
+  },
+  {
+    "ParameterKey": "ScanOnPushEnabled",
+    "ParameterValue": "false"
+  },
+  {
+    "ParameterKey": "AwsApplicationResourceGroup",
+    "ParameterValue": "yours"
+  }
+]

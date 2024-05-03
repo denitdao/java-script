@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: The template used to create an image storage.
+
+Parameters:
+  RepositoryName:
+    Type: String
+    Default: java-script-repository-cf
+
+  ScanOnPushEnabled:
+    Type: String
+    Default: 'false'
+    AllowedValues: [ 'true', 'false' ]
+    Description: Enable or disable image scanning on push.
+
+  AwsApplicationResourceGroup:
+    Type: String
+    Default: 'use your id'
+
+Resources:
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Ref RepositoryName
+      ImageScanningConfiguration:
+        scanOnPush: !Ref ScanOnPushEnabled
+      Tags:
+        - Key: app
+          Value: java-script
+        - Key: awsApplication
+          Value: !Ref AwsApplicationResourceGroup
+
+Outputs:
+  RepositoryURI:
+    Description: The URI of the created ECR repository
+    Value: !GetAtt ECRRepository.RepositoryUri
+    Export:
+      Name: !Sub '${AWS::StackName}-RepositoryURI'
