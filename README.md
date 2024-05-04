@@ -26,11 +26,11 @@ aws cloudformation create-stack --stack-name ecs-cf --template-body file://./IaC
 ### Commands to update stacks
 
 ```shell
-aws cloudformation update-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json
+aws cloudformation update-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json --capabilities CAPABILITY_IAM
 ```
 
 ```shell
-aws cloudformation update-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json
+aws cloudformation update-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json --capabilities CAPABILITY_IAM
 ```
 
 ### Commands to describe stacks

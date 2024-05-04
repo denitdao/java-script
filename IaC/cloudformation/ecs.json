@@ -5,7 +5,7 @@
   },
   {
     "ParameterKey": "TaskDefName",
-    "ParameterValue": "java-script-cluster-fargate-taskdef-cf"
+    "ParameterValue": "java-script-fargate-cf-taskdef"
   },
   {
     "ParameterKey": "AwsApplicationResourceGroup",
