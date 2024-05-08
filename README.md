@@ -2,9 +2,9 @@
 
 This repo is a sandbox with a simple Java application that is deployed to AWS
 
-# IaC (Infrastructure as a Code)
+## IaC (Infrastructure as a Code)
 
-## Cloudformation
+### Cloudformation
 
 .yaml files describe resources and .json files contain parameters that could be changed for customization (e.g. for
 dev/prod envs)
@@ -13,7 +13,7 @@ First ECR stack should be initialized.
 Then update `ecs.json` with `ContainerImageURI`, build it using output of the ECR stack.
 Then ECS stack should be initialized.
 
-### Commands to create stacks
+#### Commands to create stacks
 
 ```shell
 aws cloudformation create-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json --capabilities CAPABILITY_IAM
@@ -23,7 +23,7 @@ aws cloudformation create-stack --stack-name ecr-cf --template-body file://./IaC
 aws cloudformation create-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json --capabilities CAPABILITY_IAM
 ```
 
-### Commands to update stacks
+#### Commands to update stacks
 
 ```shell
 aws cloudformation update-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json --capabilities CAPABILITY_IAM
@@ -33,7 +33,7 @@ aws cloudformation update-stack --stack-name ecr-cf --template-body file://./IaC
 aws cloudformation update-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json --capabilities CAPABILITY_IAM
 ```
 
-### Commands to describe stacks
+#### Commands to describe stacks
 
 ```shell
 aws cloudformation describe-stacks --stack-name ecr-cf
@@ -43,6 +43,26 @@ aws cloudformation describe-stacks --stack-name ecr-cf
 aws cloudformation describe-stacks --stack-name ecs-cf
 ```
 
-## Terraform
+### Terraform
 
 in progress...
+
+## TODO:
+
+-[ ] create non-root IAM user for image deployment and infra provisioning
+-[ ] automate Fargate with Terraform
+-[ ] manually deploy it to AWS - Lambda
+-[ ] automate Lambda with CF
+-[ ] automate Lambda with Terraform
+
+-[ ] compile images on GraalVm with optimized settings
+
+-[ ] inject some AWS secrets into the Fargate app
+-[ ] add VPC to CF and Terraform
+-[ ] call Lambda from Fargate app
+
+-[ ] add Ansible to the stack
+
+## Kudos To
+
+https://github.com/Berehulia/Terraform-In-45-Minutes
