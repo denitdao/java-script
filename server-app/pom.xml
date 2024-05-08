@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.denitdao.learn.javascript</groupId>
-    <artifactId>java-script</artifactId>
+    <artifactId>server-app</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
