@@ -2,11 +2,11 @@
 
 This repo is a sandbox with a simple Java application that is deployed to AWS
 
-## IaC (Infrastructure as a Code)
+## IaC (Infrastructure as Code)
 
 ### Cloudformation
 
-.yaml files describe resources and .json files contain parameters that could be changed for customization (e.g. for
+`.yaml` files describe resources and `.json` files contain parameters that could be changed for customization (e.g. for
 dev/prod envs)
 
 First ECR stack should be initialized.
@@ -62,6 +62,7 @@ in progress...
 -[ ] call Lambda from Fargate app
 
 -[ ] add Ansible to the stack
+-[ ] add Pulumi
 
 ## Kudos To
 
