@@ -45,24 +45,26 @@ aws cloudformation describe-stacks --stack-name ecs-cf
 
 ### Terraform
 
+https://developer.hashicorp.com/terraform/language/resources/syntax
+
 in progress...
 
 ## TODO:
 
--[ ] create non-root IAM user for image deployment and infra provisioning
--[ ] automate Fargate with Terraform
--[ ] manually deploy it to AWS - Lambda
--[ ] automate Lambda with CF
--[ ] automate Lambda with Terraform
+- [ ] create non-root IAM user for image deployment and infra provisioning
+- [ ] automate Fargate with Terraform
+- [ ] manually deploy it to AWS - Lambda
+- [ ] automate Lambda with CF
+- [ ] automate Lambda with Terraform
 
--[ ] compile images on GraalVm with optimized settings
+- [ ] compile images on GraalVm with optimized settings
 
--[ ] inject some AWS secrets into the Fargate app
--[ ] add VPC to CF and Terraform
--[ ] call Lambda from Fargate app
+- [ ] inject some AWS secrets into the Fargate app
+- [ ] add VPC to CF and Terraform
+- [ ] call Lambda from Fargate app
 
--[ ] add Ansible to the stack
--[ ] add Pulumi
+- [ ] add Ansible to the stack
+- [ ] add Pulumi
 
 ## Kudos To
 
