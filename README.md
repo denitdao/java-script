@@ -47,6 +47,8 @@ aws cloudformation describe-stacks --stack-name ecs-cf
 
 https://developer.hashicorp.com/terraform/language/resources/syntax
 
+Provisions all required resources and saves state to the S3. Supports configuration via files in /variables folder.
+
 #### Setup
 
 Requires manually created resources on AWS as backend for state
@@ -69,7 +71,7 @@ terraform apply -var-file="./variables/eu-west-1/dev.tfvars"
 ## TODO:
 
 - [ ] create non-root IAM user for image deployment and infra provisioning
-- [ ] automate Fargate with Terraform
+- [x] automate Fargate with Terraform
 - [ ] manually deploy it to AWS - Lambda
 - [ ] automate Lambda with CF
 - [ ] automate Lambda with Terraform
