@@ -16,21 +16,21 @@ Then ECS stack should be initialized.
 #### Commands to create stacks
 
 ```shell
-aws cloudformation create-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json --capabilities CAPABILITY_IAM
+aws cloudformation create-stack --stack-name ecr-cf --template-body file://ecr.yaml --parameters file://ecr.json --capabilities CAPABILITY_IAM
 ```
 
 ```shell
-aws cloudformation create-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json --capabilities CAPABILITY_IAM
+aws cloudformation create-stack --stack-name ecs-cf --template-body file://ecs.yaml --parameters file://ecs.json --capabilities CAPABILITY_IAM
 ```
 
 #### Commands to update stacks
 
 ```shell
-aws cloudformation update-stack --stack-name ecr-cf --template-body file://./IaC/cloudformation/ecr.yaml --parameters file://./IaC/cloudformation/ecr.json --capabilities CAPABILITY_IAM
+aws cloudformation update-stack --stack-name ecr-cf --template-body file://ecr.yaml --parameters file://ecr.json --capabilities CAPABILITY_IAM
 ```
 
 ```shell
-aws cloudformation update-stack --stack-name ecs-cf --template-body file://./IaC/cloudformation/ecs.yaml --parameters file://./IaC/cloudformation/ecs.json --capabilities CAPABILITY_IAM
+aws cloudformation update-stack --stack-name ecs-cf --template-body file://ecs.yaml --parameters file://ecs.json --capabilities CAPABILITY_IAM
 ```
 
 #### Commands to describe stacks
@@ -47,7 +47,24 @@ aws cloudformation describe-stacks --stack-name ecs-cf
 
 https://developer.hashicorp.com/terraform/language/resources/syntax
 
-in progress...
+#### Setup
+
+Requires manually created resources on AWS as backend for state
+
+- DynamoDB table called `java-script-terraform-state-lock` with Partition Key `LockID`
+- S3 bucket with some available name, equal to one specified in `.tfbackend` file under /terraform/backends
+
+Initialize terraform state:
+
+```shell
+terraform init -backend-config="./backends/eu-west-1/dev.s3.tfbackend"
+```
+
+Create resources or apply changes:
+
+```shell
+terraform apply -var-file="./variables/eu-west-1/dev.tfvars"
+```
 
 ## TODO:
 
