@@ -4,20 +4,16 @@ Description: The template used to create an ECS Cluster with related resources.
 Parameters:
   ClusterName:
     Type: String
-    Default: java-script-cluster-cf
 
   TaskDefName:
     Type: String
-    Default: java-script-fargate-cf-taskdef
 
   AwsApplicationResourceGroup:
     Type: String
-    Default: 'use your id'
 
   ContainerImageURI:
     Type: String
     Description: Url to the image. Get it from ECS stack output. In format [<aws-url>/<repository-name>:latest]
-    Default: ''
 
 Resources:
   ECSCluster:
