@@ -2,6 +2,18 @@
 
 This repo is a sandbox with a simple Java application that is deployed to AWS
 
+## Services
+
+### EC2/Fargate
+
+Module server-app
+
+### Lambda
+
+Module lambda-app.
+
+https://micronaut-projects.github.io/micronaut-aws/latest/guide/#lambda
+
 ## IaC (Infrastructure as Code)
 
 ### Cloudformation
