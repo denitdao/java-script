@@ -6,17 +6,46 @@ This repo is a sandbox with a simple Java application that is deployed to AWS
 
 ### EC2/Fargate
 
-Module server-app
+Module `server-app`
 
 ### Lambda
 
-Module lambda-app.
+Module `lambda-app`.
 
 https://micronaut-projects.github.io/micronaut-aws/latest/guide/#lambda
 
 ## IaC (Infrastructure as Code)
 
+### Terraform
+
+https://developer.hashicorp.com/terraform/language/resources/syntax
+
+Provisions all required resources and saves state to the S3. Supports configuration via files in /variables folder.
+
+#### Setup
+
+Requires manually created resources on AWS as backend for state
+
+- DynamoDB table called `java-script-terraform-state-lock` with Partition Key `LockID`
+- S3 bucket with some available name, equal to one specified in `.tfbackend` file under /terraform/backends
+
+Initialize terraform state:
+
+```shell
+terraform init -backend-config="./backends/eu-west-1/dev.s3.tfbackend"
+```
+
+Create resources or apply changes:
+
+```shell
+terraform apply -var-file="./variables/eu-west-1/dev.tfvars"
+```
+
 ### Cloudformation
+
+> [!NOTE]
+> At some point Cloudformation was considered stupidly complicated, so I decided to proceed with this IaC only using
+> Terraform. Thus, Cloudformation version contains fewer features.
 
 `.yaml` files describe resources and `.json` files contain parameters that could be changed for customization (e.g. for
 dev/prod envs)
@@ -55,43 +84,17 @@ aws cloudformation describe-stacks --stack-name ecr-cf
 aws cloudformation describe-stacks --stack-name ecs-cf
 ```
 
-### Terraform
-
-https://developer.hashicorp.com/terraform/language/resources/syntax
-
-Provisions all required resources and saves state to the S3. Supports configuration via files in /variables folder.
-
-#### Setup
-
-Requires manually created resources on AWS as backend for state
-
-- DynamoDB table called `java-script-terraform-state-lock` with Partition Key `LockID`
-- S3 bucket with some available name, equal to one specified in `.tfbackend` file under /terraform/backends
-
-Initialize terraform state:
-
-```shell
-terraform init -backend-config="./backends/eu-west-1/dev.s3.tfbackend"
-```
-
-Create resources or apply changes:
-
-```shell
-terraform apply -var-file="./variables/eu-west-1/dev.tfvars"
-```
-
 ## TODO:
 
 - [ ] create non-root IAM user for image deployment and infra provisioning
 - [x] automate Fargate with Terraform
-- [ ] manually deploy it to AWS - Lambda
-- [ ] automate Lambda with CF
+- [x] manually deploy it to AWS - Lambda
 - [ ] automate Lambda with Terraform
 
 - [ ] compile images on GraalVm with optimized settings
 
 - [ ] inject some AWS secrets into the Fargate app
-- [ ] add VPC to CF and Terraform
+- [ ] add VPC to Terraform
 - [ ] call Lambda from Fargate app
 
 - [ ] add Ansible to the stack
