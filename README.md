@@ -102,4 +102,6 @@ aws cloudformation describe-stacks --stack-name ecs-cf
 
 ## Kudos To
 
+https://serverless.tf/
+
 https://github.com/Berehulia/Terraform-In-45-Minutes
