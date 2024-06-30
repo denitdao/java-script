@@ -1,11 +1,21 @@
 resource "aws_s3_bucket" "java_script_lambda_builds" {
   bucket = "java-script-lambda-tf-eu-west-1"
+
+  tags = {
+    app            = "java-script"
+    awsApplication = var.java_script_application_resource_group
+  }
 }
 
 resource "aws_s3_object" "java_script_function" {
   bucket = aws_s3_bucket.java_script_lambda_builds.id
   key    = "${filemd5(var.java_script_function_source)}.jar"
   source = var.java_script_function_source
+
+  tags = {
+    app            = "java-script"
+    awsApplication = var.java_script_application_resource_group
+  }
 }
 
 module "java_script_lambda_tf" {
