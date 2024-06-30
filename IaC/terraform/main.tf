@@ -26,6 +26,7 @@ module "iam" {
   env    = var.env
 }
 
+# TODO: rewrite into the ECS-version of application module
 module "ecr" {
   source                                 = "./modules/ecr"
   env                                    = var.env
@@ -33,43 +34,11 @@ module "ecr" {
   java_script_application_resource_group = var.java_script_application_resource_group
 }
 
-locals {
-  js_function_source = "${path.module}/../../lambda-app/target/lambda-app-1.0-SNAPSHOT.jar"
-}
-
-resource "aws_s3_bucket" "js_lambda_builds" {
-  bucket = "java-script-lambda-tf-eu-west-1"
-}
-
-resource "aws_s3_object" "js_function" {
-  bucket = aws_s3_bucket.js_lambda_builds.id
-  key    = "${filemd5(local.js_function_source)}.jar"
-  source = local.js_function_source
-}
-
-module "java_script_lambda_tf" {
-  source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 7.7"
-
-  function_name = "java-script-tf"
-  description   = "Lambda created by Terraform"
-  handler       = "com.denitdao.learn.javascript.FunctionRequestHandler::execute"
-  runtime       = "java21"
-  architectures = ["arm64"]
-
-  memory_size = 512
-  timeout     = 15
-
-  create_package = false
-  s3_existing_package = {
-    bucket = aws_s3_bucket.js_lambda_builds.id
-    key    = aws_s3_object.js_function.id
-  }
-
-  tags = {
-    app            = "java-script"
-    awsApplication = var.java_script_application_resource_group
-  }
+module "lambda" {
+  source                                 = "./modules/lambda"
+  env                                    = var.env
+  java_script_function_source            = "${path.module}/../../lambda-app/target/lambda-app-1.0-SNAPSHOT.jar"
+  java_script_application_resource_group = var.java_script_application_resource_group
 }
 
 resource "aws_ecs_cluster" "java_script_fargate_tf" {
