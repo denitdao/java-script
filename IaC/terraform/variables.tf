@@ -20,3 +20,8 @@ variable "container_image_uri" {
 variable "java_script_application_resource_group" {
   description = "ARN of the application resource group"
 }
+variable "disable_api_gateway" {
+  description = "Whether to allow requests to the API Gateway"
+  type        = bool
+  default     = false
+}

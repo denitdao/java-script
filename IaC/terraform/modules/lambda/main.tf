@@ -42,3 +42,38 @@ module "java_script_lambda_tf" {
     awsApplication = var.java_script_application_resource_group
   }
 }
+
+module "java_script_api_gateway" {
+  source  = "terraform-aws-modules/apigateway-v2/aws"
+  version = "~> 5.0"
+
+  name          = "java-script-api-tf"
+  description   = "API Gateway for Java Script Lambda by Terraform"
+  protocol_type = "HTTP"
+
+  create_domain_name    = false
+  create_domain_records = false
+
+  disable_execute_api_endpoint = var.disable_api_gateway
+
+  routes = {
+    "$default" = {
+      integration = {
+        uri = module.java_script_lambda_tf.lambda_function_arn
+      }
+    }
+  }
+
+  tags = {
+    app            = "java-script"
+    awsApplication = var.java_script_application_resource_group
+  }
+}
+
+resource "aws_lambda_permission" "allow_api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = module.java_script_lambda_tf.lambda_function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${module.java_script_api_gateway.api_execution_arn}/*/*"
+}

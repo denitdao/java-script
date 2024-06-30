@@ -38,4 +38,5 @@ module "lambda" {
   env                                    = var.env
   java_script_function_source            = "${path.module}/../../lambda-app/target/lambda-app-1.0-SNAPSHOT.jar"
   java_script_application_resource_group = var.java_script_application_resource_group
+  disable_api_gateway                     = var.disable_api_gateway
 }
