@@ -89,13 +89,13 @@ aws cloudformation describe-stacks --stack-name ecs-cf
 - [ ] create non-root IAM user for image deployment and infra provisioning
 - [x] automate Fargate with Terraform
 - [x] manually deploy it to AWS - Lambda
-- [ ] automate Lambda with Terraform
+- [x] automate Lambda with Terraform
 
 - [ ] compile images on GraalVm with optimized settings
 
-- [ ] inject some AWS secrets into the Fargate app
 - [ ] add VPC to Terraform
 - [ ] call Lambda from Fargate app
+- [ ] inject some AWS secrets into the Fargate app
 
 - [ ] add Ansible to the stack
 - [ ] add Pulumi
