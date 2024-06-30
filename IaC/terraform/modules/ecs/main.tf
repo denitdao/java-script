@@ -1,5 +1,4 @@
 # TODO: rewrite using predefined aws-modules
-# TODO: remove unnecessary variables
 
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "ecs-task-execution-role-tf"
@@ -44,7 +43,7 @@ resource "aws_iam_role_policy" "ecs_execution_policy" {
 }
 
 resource "aws_ecr_repository" "java_script_repository_tf" {
-  name = var.repository_name
+  name = "java-script-repository-tf"
   image_scanning_configuration {
     scan_on_push = false
   }
@@ -56,7 +55,7 @@ resource "aws_ecr_repository" "java_script_repository_tf" {
 
 
 resource "aws_ecs_cluster" "java_script_fargate_tf" {
-  name = var.cluster_name
+  name = "java-script-cluster-tf"
 
   setting {
     name  = "containerInsights"
@@ -88,7 +87,7 @@ locals {
 }
 
 resource "aws_ecs_task_definition" "java_script_fargate_tf" {
-  family       = var.task_def_name
+  family       = "java-script-fargate-tf-taskdef"
   network_mode = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   runtime_platform {
@@ -124,6 +123,6 @@ resource "aws_ecs_task_definition" "java_script_fargate_tf" {
 }
 
 resource "aws_cloudwatch_log_group" "java_script_fargate_tf" {
-  name              = "/ecs/${var.task_def_name}"
+  name              = "/ecs/java-script-fargate-tf-taskdef"
   retention_in_days = 14
 }

@@ -4,17 +4,8 @@ variable "env" {
 variable "aws_region" {
   description = "AWS region"
 }
-variable "repository_name" {
-  description = "Name of the ECR repository"
-}
-variable "cluster_name" {
-  description = "Name of the ECS cluster"
-}
-variable "task_def_name" {
-  description = "Name of the ECS task definition"
-}
 variable "container_image_uri" {
-  description = "Url to the image. In format [<aws-url>/<repository-name>:latest]"
+  description = "Url to the image. In format [<aws-url>/<repository-name>:latest]. If empty, the latest image from the repository created by this TF will be used"
   default     = ""
 }
 variable "java_script_application_resource_group" {

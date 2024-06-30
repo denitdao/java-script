@@ -26,9 +26,6 @@ module "ecs" {
   source                                 = "./modules/ecs"
   env                                    = var.env
   aws_region                             = var.aws_region
-  repository_name                        = var.repository_name
-  cluster_name                           = var.cluster_name
-  task_def_name                          = var.task_def_name
   container_image_uri                    = var.container_image_uri
   java_script_application_resource_group = var.java_script_application_resource_group
 }
