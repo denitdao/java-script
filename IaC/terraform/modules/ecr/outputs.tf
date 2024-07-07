@@ -1,3 +1,3 @@
 output "java_script_repository_tf_arn" {
-  value = aws_ecr_repository.java_script_repository_tf.arn
+  value = module.java_script_repository_tf.repository_arn
 }
