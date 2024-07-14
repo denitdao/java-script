@@ -84,9 +84,16 @@ aws cloudformation describe-stacks --stack-name ecr-cf
 aws cloudformation describe-stacks --stack-name ecs-cf
 ```
 
+## AWS Access
+
+Create non-root IAM user
+using [tutorial](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html#create-an-admin)
+
+Add its details to ~/.aws/credentials file under [default] profile
+
 ## TODO:
 
-- [ ] create non-root IAM user for image deployment and infra provisioning
+- [x] create non-root IAM user for image deployment and infra provisioning
 - [x] automate Fargate with Terraform
 - [x] manually deploy it to AWS - Lambda
 - [x] automate Lambda with Terraform
